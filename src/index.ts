@@ -8,7 +8,7 @@ class School {
 
 class Direction {
   levels: Level[] = [];
-  _name: string;
+  private _name: string;
 
   constructor(name: string) {
     this._name = name;
@@ -25,8 +25,8 @@ class Direction {
 
 class Level {
   groups: Group[] = [];
-  _name: string;
-  _program: number;
+  private _name: string;
+  private _program: number;
 
   constructor(name: string, program: number) {
     this._name = name;
@@ -47,13 +47,13 @@ class Level {
 }
 
 class Group {
-  _students: Student[] = [];
-  _directionName: string;
-  _levelName: string;
+  private _students: Student[] = [];
+  directionName: string;
+  levelName: string;
 
   constructor(directionName: string, levelName: string) {
-    this._directionName = directionName;
-    this._levelName = levelName;
+    this.directionName = directionName;
+    this.levelName = levelName;
   }
 
   get students(): Student[] {
@@ -74,7 +74,6 @@ class Group {
 class Student {
   grades: Record<string, number> = {};
   attendance: boolean[] = [];
-  _fullName: string = "";
   firstName: string;
   lastName: string;
   birthYear: number;
