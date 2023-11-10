@@ -4,16 +4,23 @@ interface IRequest {
   to: number;
 }
 
-interface IResponseSuccess extends IRequest {
+interface IDataSuccess extends IRequest {
   databaseId: number;
 }
 
-interface IResponseFail {
+interface IDataFail {
   errorMessage: string;
   errorCode: number;
 }
 
-interface IResponse {
-  status: "success" | "failed";
-  data: IResponseSuccess | IResponseFail;
+interface IResponseSuccess {
+  status: "success";
+  data: IDataSuccess;
 }
+
+interface IResponseFail {
+  status: "failed";
+  data: IDataFail;
+}
+
+type TResponse = IResponseSuccess | IResponseFail;
