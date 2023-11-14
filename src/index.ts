@@ -4,6 +4,7 @@ import {
   IRectangle,
   ISquare,
   ITriangle,
+  IFormula,
 } from "./@interfaces/interfaces.ts";
 
 abstract class Shape implements IShape {
@@ -18,22 +19,22 @@ class Circle extends Shape implements ICircle {
   }
 }
 
-class Rectangle extends Shape implements IRectangle {
+class Rectangle extends Shape implements IRectangle, IFormula {
   public calculateArea(): number {
     return Math.random() + 10;
   }
 
-  public print() {
+  public print(): string {
     return "S = L * H";
   }
 }
 
-class Square extends Shape implements ISquare {
+class Square extends Shape implements ISquare, IFormula {
   public calculateArea(): number {
     return Math.random() + 100;
   }
 
-  public print() {
+  public print(): string {
     return "S = s * s";
   }
 }

@@ -4,13 +4,13 @@ export interface IShape {
   calculateArea(): number;
 }
 
-export interface IRectangle extends IShape {
+export interface IFormula {
   print(): string;
 }
 
-export interface ISquare extends IShape {
-  print(): string;
-}
+export interface IRectangle extends IShape {}
+
+export interface ISquare extends IShape {}
 
 export interface ICircle extends IShape {}
 
