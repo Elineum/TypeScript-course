@@ -13,6 +13,7 @@ export interface ICompany {
   takeOnBalance(departmentName: string): void;
   dropFromBalance(departmentName: string): void;
   showTotalBalance(): void;
+  showExactDepartmentBalance(departmentName: string): void;
   fireWorker(workerName: string): void;
   promoteTrainee(traineeFullName: string): void;
   makeInvestment(money: number): void;

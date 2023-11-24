@@ -52,3 +52,5 @@ googleCompany.showTotalBalance();
 
 googleCompany.sendSalary();
 googleCompany.showTotalBalance();
+
+googleCompany.showExactDepartmentBalance("IT");

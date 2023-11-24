@@ -151,6 +151,14 @@ export class Company implements ICompany {
     );
   }
 
+  public showExactDepartmentBalance(departmentName: string): void {
+    const department = this.#findDepartment(departmentName);
+
+    if (department) {
+      console.log(`${department.name} has ${department.getBalance()}$.`);
+    }
+  }
+
   public fireWorker(workerFullName: string): void {
     this._departments.forEach((dep) => dep.removeWorker(workerFullName));
 
