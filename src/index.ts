@@ -1,6 +1,6 @@
 import { IEntity } from "./interfaces/entity.interface";
 
-function convertToString(value: any): string | undefined {
+function convertToString<T>(value: T): string | undefined {
   if (value) {
     if (typeof value.toString === "function") return value.toString();
   }
@@ -8,8 +8,11 @@ function convertToString(value: any): string | undefined {
   return undefined;
 }
 
-function sortEntities(array: IEntity[], order: "asc" | "desc"): IEntity[] {
-  const sortedArray: IEntity[] = array.sort((a, b) => a.id - b.id);
+function sortEntities<T extends IEntity>(
+  array: T[],
+  order: "asc" | "desc"
+): T[] {
+  const sortedArray: T[] = [...array].sort((a, b) => a.id - b.id);
 
   return order === "asc" ? sortedArray : sortedArray.reverse();
 }
