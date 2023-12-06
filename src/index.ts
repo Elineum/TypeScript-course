@@ -3,7 +3,9 @@ type DeepReadonly<T> = {
 };
 
 type DeepRequireReadonly<T> = {
-  [K in keyof T]: T[K] extends object ? DeepRequireReadonly<T[K]> : T[K];
+  readonly [K in keyof T]: T[K] extends object
+    ? Required<DeepRequireReadonly<T[K]>>
+    : Required<T[K]>;
 };
 
 type UpperCaseKeys<T> = {
