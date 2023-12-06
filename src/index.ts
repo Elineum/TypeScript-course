@@ -7,9 +7,7 @@ type DeepRequireReadonly<T> = {
 };
 
 type UpperCaseKeys<T> = {
-  [K in keyof T & string as Uppercase<K>]: T[K] extends object
-    ? DeepRequireReadonly<T[K]>
-    : T[K];
+  [K in keyof T & string as Uppercase<K>]: T[K];
 };
 
 type PickAnalog<T, P extends keyof T> = {
