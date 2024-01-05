@@ -1,9 +1,3 @@
-import { airConditionerAdapter } from "./adapters/airConditionerAdapter";
-import { lightAdapter } from "./adapters/lightAdapter";
-import { securitySystemAdapter } from "./adapters/securitySystemAdapter";
-import { AirConditioner } from "./apis/airConditionerSystem.api";
-import { Light } from "./apis/lightSystem.api";
-import { SecuritySystem } from "./apis/securitySystem.api";
 import { EDeviceType } from "./types/deviceType.enum";
 import { ISystem } from "./types/systemAdapter.interface";
 
