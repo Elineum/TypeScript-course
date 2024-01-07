@@ -1,20 +1,25 @@
+import { AirConditionerAdapter } from "./adapters/airConditionerAdapter";
+import { LightAdapter } from "./adapters/lightAdapter";
+import { SecuritySystemAdapter } from "./adapters/securitySystemAdapter";
+import { AirConditioner } from "./apis/airConditionerSystem.api";
+import { SecuritySystem } from "./apis/securitySystem.api";
 import { EDeviceType } from "./types/deviceType.enum";
 import { ISystem } from "./types/systemAdapter.interface";
 
 class HomeControlPanel {
-  protected systems: Map<string, ISystem> = new Map();
+  #systems: Map<string, ISystem> = new Map();
 
   constructor(...args: ISystem[]) {
     args.forEach((system) => {
-      if (!this.systems.has(system.type)) {
-        this.systems.set(system.type as string, system);
+      if (!this.#systems.has(system.type)) {
+        this.#systems.set(system.type as string, system);
       }
     });
   }
 
   toggleDevice(type: EDeviceType) {
     // Some additional business logic.....
-    this.systems.get(type)?.toggle();
+    this.#systems.get(type)?.toggle();
   }
 
   leaveHome(): void {
@@ -22,7 +27,7 @@ class HomeControlPanel {
 
     const mustBeEnabled: EDeviceType[] = [EDeviceType.SecuritySystem]; // can add more if needed
 
-    this.systems.forEach((system) =>
+    this.#systems.forEach((system) =>
       mustBeEnabled.includes(system.type as EDeviceType)
         ? system.enable()
         : system.disable()
@@ -34,7 +39,7 @@ class HomeControlPanel {
 
     const mustBeDisabled: EDeviceType[] = [EDeviceType.SecuritySystem]; // same,
 
-    this.systems.forEach((system) =>
+    this.#systems.forEach((system) =>
       mustBeDisabled.includes(system.type as EDeviceType)
         ? system.enable()
         : system.disable()
@@ -42,27 +47,26 @@ class HomeControlPanel {
   }
 }
 
-class RemoteControl extends HomeControlPanel {
+class RemoteControl {
+  #systems: Map<string, ISystem> = new Map();
+
   constructor(...args: ISystem[]) {
-    super(...args);
-    this.systems.delete(EDeviceType.SecuritySystem);
+    args.forEach((system) => {
+      const blockedSystems = [EDeviceType.SecuritySystem];
+
+      if (blockedSystems.includes(system.type)) return;
+
+      if (!this.#systems.has(system.type)) {
+        this.#systems.set(system.type, system);
+      }
+    });
   }
 
   toggleLight(): void {
-    super.toggleDevice(EDeviceType.Light);
+    this.#systems.get(EDeviceType.Light)?.toggle();
   }
 
   toggleAirCondition(): void {
-    super.toggleDevice(EDeviceType.AirConditioner);
-  }
-
-  override toggleDevice() {
-    throw new Error("Remote control dont grant access to the this method.");
-  }
-  override leaveHome() {
-    throw new Error("Remote control dont grant access to the this method.");
-  }
-  override backHome() {
-    throw new Error("Remote control dont grant access to the this method.");
+    this.#systems.get(EDeviceType.AirConditioner)?.toggle();
   }
 }

@@ -2,9 +2,9 @@ import { SecuritySystem } from "../apis/securitySystem.api";
 import { EDeviceType } from "../types/deviceType.enum";
 import { ISystem } from "../types/systemAdapter.interface";
 
-export class securitySystemAdapter implements ISystem {
+export class SecuritySystemAdapter implements ISystem {
   #securitySystem: SecuritySystem;
-  type: string;
+  type: EDeviceType;
 
   constructor(securitySystem: SecuritySystem) {
     this.#securitySystem = securitySystem;

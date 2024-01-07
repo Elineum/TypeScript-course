@@ -1,9 +1,10 @@
 import { Light } from "../apis/lightSystem.api";
+import { EDeviceType } from "../types/deviceType.enum";
 import { ISystem } from "../types/systemAdapter.interface";
 
-export class lightAdapter implements ISystem {
+export class LightAdapter implements ISystem {
   #light: Light;
-  type: string;
+  type: EDeviceType;
 
   constructor(light: Light) {
     this.#light = light;

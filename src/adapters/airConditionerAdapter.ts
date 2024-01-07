@@ -1,9 +1,10 @@
 import { AirConditioner } from "../apis/airConditionerSystem.api";
+import { EDeviceType } from "../types/deviceType.enum";
 import { ISystem } from "../types/systemAdapter.interface";
 
-export class airConditionerAdapter implements ISystem {
+export class AirConditionerAdapter implements ISystem {
   #airConditioner: AirConditioner;
-  type: string;
+  type: EDeviceType;
 
   constructor(airConditioner: AirConditioner) {
     this.#airConditioner = airConditioner;

@@ -1,5 +1,7 @@
+import { EDeviceType } from "./deviceType.enum";
+
 export interface ISystem {
-  type: string;
+  type: EDeviceType;
   toggle(): void;
   enable(): void;
   disable(): void;
