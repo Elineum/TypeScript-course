@@ -1,0 +1,17 @@
+{
+  "name": "h-hw12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/uuid": "^9.0.7",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "uuid": "^9.0.1"
+  }
+}
