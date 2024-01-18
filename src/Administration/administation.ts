@@ -59,4 +59,8 @@ export class Administration implements IAdministration {
 
     return this;
   }
+
+  get workers(): IWorkerDatabase {
+    return this.#workers;
+  }
 }

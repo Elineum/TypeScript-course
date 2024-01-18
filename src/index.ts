@@ -24,6 +24,7 @@ class Zoo {
 
   constructor() {
     this.#adverstising.setClientDatabase(this.#clients);
+    this.#accounting.setWorkersDatabase(this.#administration.workers);
     this.#cashier
       .setClientDatabase(this.#clients)
       .setVisitorDatabase(this.#visitors)

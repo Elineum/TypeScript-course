@@ -1,6 +1,8 @@
 import { IAdvertising } from "../Advertising/advertising.interface";
+import { IWorkerDatabase } from "./Workers/workers.interface";
 
 export interface IAdministration {
+  workers: IWorkerDatabase;
   buyAnimal(
     name: string,
     age: number,

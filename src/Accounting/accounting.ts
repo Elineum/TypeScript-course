@@ -1,3 +1,4 @@
+import { IWorkerDatabase } from "../Administration/Workers/workers.interface";
 import { Budget } from "./Budget/budget";
 import { IBudget } from "./Budget/budget.interface";
 import { IAccounting, IReport } from "./accounting.interface";
@@ -5,6 +6,7 @@ import { IAccounting, IReport } from "./accounting.interface";
 export class Accounting implements IAccounting {
   #reportLogs: IReport[] = [];
   #budget: IBudget = new Budget();
+  #workersDatabase!: IWorkerDatabase;
 
   generateFinanceReport(): void {
     this.#budget.showDetailedInfo();
@@ -15,7 +17,7 @@ export class Accounting implements IAccounting {
   }
 
   paySalary(): this {
-    const salaryPrice = 1500;
+    const salaryPrice = this.#workersDatabase.getSalaryExpenses();
 
     this.#getFreeMoney() > salaryPrice
       ? console.log(`You paid salaries to all employees`)
@@ -46,5 +48,11 @@ export class Accounting implements IAccounting {
 
   #getFreeMoney(): number {
     return this.#budget.updateBudgetData(this.#reportLogs).getActualBalance();
+  }
+
+  setWorkersDatabase(workersDatabase: IWorkerDatabase): this {
+    this.#workersDatabase = workersDatabase;
+
+    return this;
   }
 }
